@@ -2,7 +2,7 @@
 
 A small custom-framing store with an oversized sense of craft. Pick a photograph, choose a real print size, frame and mat, inspect the dimensional preview, and complete a Stripe test checkout.
 
-**Live URL:** Awaiting Railway account setup and deployment. The working local preview is http://localhost:3100.
+**Live URL:** https://framing-studio-production.up.railway.app
 
 **Test card:** `4242 4242 4242 4242` · any future expiry · any three-digit CVC · any valid Canadian postal code. Never use a real card.
 
@@ -26,7 +26,7 @@ This is an independent concept demo by Davron, inspired by the Edmonton framing 
 - Three.js via React Three Fiber for the frame, procedural wood textures, glass, dimensional layers, and pointer interaction. Motion handles interface transitions; reduced-motion preferences are respected. A plain-image frame remains available if WebGL fails.
 - PostgreSQL with `pg`, SQL constraints and transactions. Money is integer CAD cents.
 - Stripe-hosted Checkout, test credentials only. Webhooks verify the raw-body signature and reject live events.
-- Railway app + PostgreSQL deployment, with a multi-stage Docker build and automatic pre-deploy migration.
+- Railway app + PostgreSQL deployment, with a multi-stage Docker build and automatic database migration on startup.
 
 The browser submits configuration, never an amount. The server validates the configuration and recomputes the price. Checkout requests are idempotent at both the database and Stripe layers. Only a signed, paid Checkout webhook matching the saved order’s session, currency and amount changes its status to paid. A unique event ID plus row locking prevents duplicate fulfillment. Redirects and order-page polling cannot mark an order paid.
 
@@ -71,7 +71,7 @@ Save its `whsec_…` signing secret in `.env.local`, use a sandbox secret key be
 3. Generate the app’s public domain in its Networking settings. Set `APP_URL` to that exact `https://…` origin.
 4. Sign up at [Stripe](https://dashboard.stripe.com/register) and use a sandbox/test environment. Set the app’s `STRIPE_SECRET_KEY` variable to its test secret key. No live activation is needed for a sandbox demo.
 5. In Stripe Workbench → Webhooks, add an event destination for `https://YOUR-RAILWAY-DOMAIN/api/stripe/webhook`. Select `checkout.session.completed` and `checkout.session.async_payment_succeeded`. Copy the endpoint signing secret to the app variable `STRIPE_WEBHOOK_SECRET`.
-6. Deploy. The checked-in `railway.json` uses the Dockerfile, runs `node scripts/migrate.cjs` before deployment and checks `/api/health`.
+6. Deploy. The Dockerfile runs `node scripts/migrate.cjs` before starting the server. The optional Railway configuration also supplies a pre-deploy migration and `/api/health` check. Point the generated domain to the runtime port (Railway assigns 8080 by default).
 7. Complete a test purchase at the public URL. Verify the Stripe webhook response is 200, the confirmation changes to paid, and the order appears in the orders page. Replay the same event; the order must remain a single paid order.
 8. Replace the live-URL line at the top of this README with the verified Railway URL.
 
