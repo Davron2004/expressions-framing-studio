@@ -217,6 +217,8 @@ function MatBoard({
   );
 }
 
+const ROOM_SCALE = 0.82;
+
 function FramedObject({
   configuration,
   mode,
@@ -332,7 +334,7 @@ function FramedObject({
       6,
       delta,
     );
-    const targetScale = mode === "room" ? 0.82 : 1;
+    const targetScale = mode === "room" ? ROOM_SCALE : 1;
     group.current.scale.x = THREE.MathUtils.damp(
       group.current.scale.x,
       targetScale,
@@ -448,8 +450,14 @@ function FramedObject({
   );
 }
 
-function CameraFit({ configuration }: { configuration: Configuration }) {
-  const { size, camera } = useThree();
+function CameraFit({
+  configuration,
+  mode,
+}: {
+  configuration: Configuration;
+  mode: Props["mode"];
+}) {
+  const { size, camera, gl } = useThree();
   const d = dimensions(configuration);
   const unit = 5.15 / d.outerWidth;
   const outerW = d.outerWidth * unit;
@@ -461,7 +469,21 @@ function CameraFit({ configuration }: { configuration: Configuration }) {
       size.height / (outerH + 2.1),
     );
     ortho.updateProjectionMatrix();
-  }, [camera, size.width, size.height, outerW, outerH]);
+
+    // The caption under the frame is HTML, not part of the scene, so it needs to know where
+    // the frame's bottom edge actually lands. That edge moves with print size, wall-view
+    // scale and stage size; a fixed CSS offset overlapped tall prints in wall view.
+    const stage = gl.domElement.closest<HTMLElement>(".preview-stage");
+    if (!stage) return;
+    const scale = mode === "room" ? ROOM_SCALE : 1;
+    const canvasTop =
+      gl.domElement.getBoundingClientRect().top -
+      stage.getBoundingClientRect().top;
+    const frameBottom =
+      canvasTop + size.height / 2 + (outerH / 2) * scale * ortho.zoom;
+    stage.style.setProperty("--frame-bottom", `${Math.round(frameBottom)}px`);
+    stage.classList.add("has-frame-metrics");
+  }, [camera, gl, size.width, size.height, outerW, outerH, mode]);
   return null;
 }
 
@@ -478,7 +500,7 @@ function Scene({
 }) {
   return (
     <>
-      <CameraFit configuration={configuration} />
+      <CameraFit configuration={configuration} mode={mode} />
       <ambientLight intensity={1.7} color="#ffffff" />
       <directionalLight
         position={[-3.5, 5, 5]}

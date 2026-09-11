@@ -934,6 +934,13 @@ button svg {
 .is-expanded .art-caption {
   bottom: 95px;
 }
+.preview-stage.has-frame-metrics .art-caption {
+  top: calc(var(--frame-bottom) + 16px);
+  bottom: auto;
+  transition:
+    top 0.5s ease,
+    opacity 0.8s;
+}
 @media (min-width: 1600px) {
   .preview-stage {
     min-height: 700px;
