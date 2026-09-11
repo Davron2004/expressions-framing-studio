@@ -1,0 +1,578 @@
+.shell {
+  min-height: 100vh;
+  background: #f7f5ef;
+  color: #252b22;
+  padding: 0 5vw 28px;
+  font-family: var(--font-sans), Arial, sans-serif;
+}
+.header {
+  height: 82px;
+  border-bottom: 1px solid rgba(37, 43, 34, 0.18);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.mark {
+  font-family: var(--font-serif), Georgia, serif;
+  font-size: 25px;
+  letter-spacing: -0.09em;
+  color: inherit;
+  text-decoration: none;
+}
+.mark span {
+  color: #92ae36;
+  font-size: 0.72em;
+  margin: 0 2px;
+}
+.header nav {
+  display: flex;
+  gap: 24px;
+  font-size: 14px;
+}
+.header nav a {
+  color: inherit;
+  text-decoration: none;
+}
+.header nav a:last-child {
+  border-bottom: 1px solid #252b22;
+  padding-bottom: 3px;
+}
+.ordersIntro {
+  max-width: 850px;
+  padding: 88px 0 45px;
+}
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 11px;
+  font-weight: 650;
+  margin: 0 0 14px;
+  color: #68715d;
+}
+.titleLine {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  align-items: baseline;
+}
+.shell h1,
+.shell h2 {
+  font-family: var(--font-serif), Georgia, serif;
+  font-weight: 400;
+  letter-spacing: -0.045em;
+}
+.ordersIntro h1 {
+  font-size: clamp(42px, 6vw, 72px);
+  margin: 0;
+}
+.ordersIntro > p:last-child,
+.lead {
+  font-size: 17px;
+  line-height: 1.55;
+  max-width: 570px;
+  margin: 17px 0 0;
+  color: #586053;
+}
+.refresh {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  border: 0;
+  background: transparent;
+  color: #252b22;
+  font: inherit;
+  font-size: 14px;
+  padding: 8px 0;
+  cursor: pointer;
+}
+.refresh:disabled {
+  opacity: 0.55;
+}
+.spinning {
+  animation: spin 0.85s linear infinite;
+}
+.orderList {
+  border-top: 1px solid rgba(37, 43, 34, 0.22);
+}
+.orderRow {
+  display: grid;
+  grid-template-columns: 100px 1fr auto;
+  gap: 25px;
+  padding: 20px 0;
+  border-bottom: 1px solid rgba(37, 43, 34, 0.17);
+  color: inherit;
+  text-decoration: none;
+  align-items: center;
+  transition: background 0.2s;
+}
+.orderRow:hover {
+  background: rgba(214, 239, 118, 0.15);
+}
+.frameObject {
+  aspect-ratio: var(--outer-ratio);
+  box-sizing: border-box;
+  background: var(--frame-colour);
+  padding: var(--frame-space);
+  box-shadow: 1px 3px 9px rgba(28, 29, 20, 0.19);
+}
+.frameMat {
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  background: var(--mat-colour);
+  padding: var(--mat-y) var(--mat-x) var(--mat-bottom);
+  line-height: 0;
+}
+.frameMat img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: var(--image-ratio);
+  object-fit: cover;
+}
+.rowArt {
+  width: 92px;
+}
+.rowTop {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  font-size: 14px;
+  color: #68715d;
+}
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.status i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #9ca394;
+}
+.status.paid i {
+  background: #a4cd36;
+}
+.status.pending i {
+  background: #e0a946;
+}
+.status.expired i {
+  background: #a46f62;
+}
+.orderMeta h2 {
+  font-size: 25px;
+  margin: 7px 0 3px;
+}
+.orderMeta p,
+.orderMeta small {
+  font-size: 14px;
+  color: #68715d;
+  margin: 0;
+}
+.orderMeta small {
+  display: block;
+  margin-top: 8px;
+  font-size: 12px;
+}
+.rowPrice {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  font-size: 15px;
+}
+.empty {
+  text-align: center;
+  max-width: 520px;
+  margin: 9vh auto;
+  padding: 32px 0;
+}
+.emptyMark {
+  height: 64px;
+  width: 64px;
+  border: 1px solid rgba(37, 43, 34, 0.25);
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  margin: 0 auto 28px;
+}
+.empty h2 {
+  font-size: 42px;
+  margin: 0 0 12px;
+}
+.empty > p:not(.eyebrow) {
+  line-height: 1.5;
+  margin: 0 auto 26px;
+  color: #586053;
+  max-width: 385px;
+}
+.limeButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #d6ef76;
+  color: #252b22;
+  padding: 13px 18px;
+  text-decoration: none;
+  border: 0;
+  font: inherit;
+  font-size: 14px;
+  cursor: pointer;
+}
+.loading {
+  min-height: 45vh;
+  display: flex;
+  gap: 11px;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+}
+.problem {
+  display: flex;
+  gap: 15px;
+  max-width: 650px;
+  margin: 13vh auto;
+  line-height: 1.5;
+}
+.problem h1,
+.problem h2 {
+  font-size: 32px;
+  margin: 0 0 8px;
+}
+.problem p {
+  margin: 0 0 16px;
+  color: #586053;
+}
+.problem button,
+.problem a {
+  display: inline-flex;
+  gap: 7px;
+  align-items: center;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  color: inherit;
+  font: inherit;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.demoNote {
+  text-align: center;
+  margin: 70px 0 0;
+  color: #78806e;
+  font-size: 12px;
+}
+.pendingView,
+.paidView {
+  max-width: 1050px;
+  margin: 0 auto;
+  padding: 82px 0 30px;
+  text-align: center;
+}
+.pendingIcon {
+  width: 62px;
+  height: 62px;
+  display: grid;
+  place-items: center;
+  margin: 0 auto 24px;
+  border: 1px solid rgba(37, 43, 34, 0.3);
+  border-radius: 50%;
+}
+.pendingView h1,
+.paidView h1 {
+  font-size: clamp(42px, 5vw, 62px);
+  margin: 0;
+}
+.pendingView .lead,
+.paidView .lead {
+  margin: 15px auto 0;
+}
+.pendingLine {
+  display: flex;
+  gap: 7px;
+  justify-content: center;
+  margin: 29px 0 48px;
+}
+.pendingLine span {
+  height: 3px;
+  width: 38px;
+  background: #d6ef76;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+.pendingLine span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.pendingLine span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+.detailLayout {
+  margin: 0 auto 30px;
+  display: grid;
+  grid-template-columns: minmax(190px, 280px) minmax(240px, 1fr);
+  gap: 54px;
+  max-width: 760px;
+  text-align: left;
+  align-items: center;
+}
+.detailArt {
+  max-width: 265px;
+  justify-self: center;
+}
+.detailLayout h2 {
+  font-size: 34px;
+  margin: 13px 0 6px;
+}
+.detailLayout > div > p {
+  font-size: 14px;
+  color: #68715d;
+  margin: 0 0 22px;
+}
+.orderDetails {
+  border-top: 1px solid rgba(37, 43, 34, 0.2);
+}
+.orderDetails > div,
+.receiptSummary > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  border-bottom: 1px solid rgba(37, 43, 34, 0.14);
+  padding: 10px 0;
+  font-size: 14px;
+}
+.orderDetails span,
+.receiptSummary span {
+  color: #68715d;
+}
+.orderDetails strong,
+.receiptSummary strong {
+  font-weight: 550;
+  text-align: right;
+}
+.textLink {
+  color: inherit;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  border-bottom: 1px solid #252b22;
+  padding-bottom: 3px;
+}
+.paidView {
+  position: relative;
+}
+.seal {
+  height: 76px;
+  width: 76px;
+  border-radius: 50%;
+  background: #d6ef76;
+  display: grid;
+  place-items: center;
+  margin: 0 auto 23px;
+}
+.paidLayout {
+  display: grid;
+  grid-template-columns: minmax(260px, 1.05fr) minmax(280px, 0.95fr);
+  gap: clamp(36px, 7vw, 95px);
+  align-items: center;
+  text-align: left;
+  margin-top: 52px;
+}
+.heroArt {
+  max-width: 440px;
+  margin: auto;
+}
+.receipt {
+  border-top: 2px solid #252b22;
+  border-bottom: 1px solid rgba(37, 43, 34, 0.28);
+  padding: 14px 0 20px;
+}
+.receiptHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.receiptHead > div {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  font-weight: 650;
+}
+.receipt h2 {
+  font-size: 32px;
+  margin: 26px 0 6px;
+}
+.receipt > p {
+  font-size: 13px;
+  color: #68715d;
+  margin: 0 0 18px;
+}
+.receiptActions {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  margin-top: 22px;
+}
+.receiptActions > a:first-child {
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid #252b22;
+  padding-bottom: 3px;
+}
+.confetti {
+  position: absolute;
+  inset: 60px 0 auto;
+  height: 180px;
+  pointer-events: none;
+  overflow: hidden;
+}
+.confetti i {
+  position: absolute;
+  left: calc(5% + (var(--i) * 5%));
+  width: 7px;
+  height: 13px;
+  background: #d6ef76;
+  animation: fall 1.6s cubic-bezier(0.2, 0.7, 0.3, 1) both;
+  animation-delay: calc(var(--i) * 40ms);
+  transform: rotate(calc(var(--i) * 29deg));
+}
+.confetti i:nth-child(3n) {
+  background: #b2c87a;
+}
+.confetti i:nth-child(4n) {
+  background: #252b22;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes pulse {
+  50% {
+    opacity: 0.25;
+    transform: scaleX(0.72);
+  }
+}
+@keyframes fall {
+  0% {
+    opacity: 0;
+    translate: 0 -30px;
+  }
+  15% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    translate: calc((var(--i) - 9) * 6px) 140px;
+    rotate: 230deg;
+  }
+}
+@media (max-width: 650px) {
+  .shell {
+    padding: 0 24px 22px;
+  }
+  .header {
+    height: 70px;
+  }
+  .header nav {
+    gap: 15px;
+    font-size: 13px;
+  }
+  .ordersIntro {
+    padding: 58px 0 30px;
+  }
+  .titleLine {
+    align-items: flex-start;
+  }
+  .orderRow {
+    grid-template-columns: 72px 1fr;
+    gap: 16px;
+  }
+  .rowArt {
+    width: 68px;
+  }
+  .rowPrice {
+    grid-column: 2;
+    justify-content: space-between;
+    margin-top: -5px;
+  }
+  .orderMeta h2 {
+    font-size: 22px;
+  }
+  .rowTop {
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .detailLayout,
+  .paidLayout {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .detailLayout {
+    text-align: center;
+  }
+  .detailArt {
+    width: 220px;
+  }
+  .detailLayout .orderDetails {
+    text-align: left;
+  }
+  .pendingView,
+  .paidView {
+    padding-top: 58px;
+  }
+  .paidLayout {
+    margin-top: 38px;
+  }
+  .heroArt {
+    width: min(86%, 360px);
+  }
+  .receipt {
+    text-align: left;
+  }
+  .receiptActions {
+    justify-content: space-between;
+  }
+  .confetti {
+    top: 30px;
+  }
+  .empty {
+    margin: 6vh auto;
+  }
+  .ordersIntro h1 {
+    font-size: 48px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .spinning,
+  .pendingLine span,
+  .confetti i {
+    animation: none;
+  }
+}
+
+.uploadPlaceholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  background: #e5e8dc;
+  height: 100%;
+  min-height: 40px;
+  color: #6b775d;
+  font-size: 11px;
+  line-height: 1.2;
+}
