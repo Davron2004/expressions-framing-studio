@@ -8,6 +8,8 @@ A small custom-framing store with an oversized sense of craft. Pick a photograph
 
 ![The framing studio](docs/studio-desktop.png)
 
+[Mobile screenshot](docs/studio-mobile.png)
+
 ## The two-minute demo
 
 1. Start with the alpine photograph. Move the pointer over the frame to see its depth.
@@ -78,6 +80,10 @@ Save its `whsec_…` signing secret in `.env.local`, use a sandbox secret key be
 Official references: [Railway Next.js + PostgreSQL](https://docs.railway.com/guides/nextjs), [Stripe Checkout fulfillment](https://docs.stripe.com/checkout/fulfillment), [Stripe test cards](https://docs.stripe.com/testing).
 
 ## Validation
+
+Verified on the public Railway deployment on September 11, 2026: an uploaded photograph completed Stripe sandbox Checkout for CAD $104; the signed Stripe webhook marked the order paid; replaying the same event returned 200 without adding another order. Desktop and 390px mobile layouts, uploads, option changes, order history, and the production startup migration were checked.
+
+The optional browser WebMCP read-only design tool is feature-detected; registration was observed locally, but execution was not verified in the hosted browser.
 
 ```sh
 npm run typecheck
