@@ -16,7 +16,11 @@ const inputSchema = z
 export const runtime = "nodejs";
 export async function POST(request: Request) {
   try {
-    if (!databaseConfigured() || !stripeConfigured())
+    if (
+      !databaseConfigured() ||
+      !stripeConfigured() ||
+      !process.env.STRIPE_WEBHOOK_SECRET?.startsWith("whsec_")
+    )
       throw new HttpError(
         503,
         "Test checkout isn’t connected yet. Your design is saved in this browser.",
