@@ -4,6 +4,8 @@ A small custom-framing store with an oversized sense of craft. Pick a photograph
 
 **Live URL:** https://framing-studio-production.up.railway.app
 
+**90-second walkthrough:** https://youtu.be/PvGqQwgXpcA
+
 **Test card:** `4242 4242 4242 4242` · any future expiry · any three-digit CVC · any valid Canadian postal code. Never use a real card.
 
 ![The framing studio](docs/studio-desktop.png)
@@ -20,7 +22,7 @@ A small custom-framing store with an oversized sense of craft. Pick a photograph
 6. Select **Make it yours**, use the Stripe test card, and return to the order confirmation. It waits for the verified webhook before showing **Paid**.
 7. Open **Your orders** to see the order.
 
-This is an independent concept demo by Davron, inspired by the Edmonton framing shop. It is not the shop’s operating checkout. There are no physical orders or real payments. The screen recording is intentionally outside this delivery.
+This is an independent concept demo by Davron, inspired by the Edmonton framing shop. It is not the shop’s operating checkout. There are no physical orders or real payments. The walkthrough video above shows the same flow end to end.
 
 ## Stack and decisions
 
