@@ -2,7 +2,7 @@
 
 A small custom-framing store with an oversized sense of craft. Pick a photograph, choose a real print size, frame and mat, inspect the dimensional preview, and complete a Stripe test checkout.
 
-**Live URL:** https://framing-studio-production.up.railway.app
+**Live demo:** taken down in September 2026. The walkthrough below shows the full flow.
 
 **90-second walkthrough:** https://youtu.be/PvGqQwgXpcA
 
